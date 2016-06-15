@@ -1,7 +1,7 @@
 //radio2serial.ino
 // By Rémi Sarrailh
 // MIT licence
-// version: 0.7
+// version: 0.71
 
 // Get this program / update at: https://github.com/pigetArduino/radio2serial
 //
@@ -52,7 +52,7 @@
 */ 
 
 //Version
-const float VER = 0.70; 
+const float VER = 0.71; 
 
 //Led
 const int statusLedPin = 13;
@@ -254,7 +254,7 @@ Receive radio
 //Show 434 code with no self-learn code
 // /radio/old/code/(period)
 void showOld434(unsigned long receivedCode, unsigned int period) {
-  Serial.print("{\"data\" : \"/radio/old/");
+  Serial.print("{\"data\":\"/radio/old/");
   Serial.print(receivedCode);
 
   //If period is not between 400 and 500 we display it
@@ -271,7 +271,7 @@ void showOld434(unsigned long receivedCode, unsigned int period) {
 // /radio/new/address/id/level/(period)
 void showNew434(NewRemoteCode receivedCode) {
   // Print the received code.
-  Serial.print("{\"data\" : \"/radio/new/");
+  Serial.print("{\"data\":\"/radio/new/");
   Serial.print(receivedCode.address);
   Serial.print("/");
   Serial.print(receivedCode.unit);
@@ -318,7 +318,7 @@ void showText434() {
     char* radiocode; //Create array of char 
     buf[buflen] = '\0'; //Add a end of string to buffer
     radiocode = (char *)buf; //Get uint buffer to array of char
-    Serial.print("{\"data\" : \"/radio/text/");
+    Serial.print("{\"data\":\"/radio/text/");
     Serial.print(radiocode); //Display text message
     Serial.println("\"}");
   }
@@ -351,7 +351,7 @@ void sendText434(String line) {
   driver.waitPacketSent();
 
   //Show what has been sent
-  Serial.print("{\"data\" : \"/radio/text/");
+  Serial.print("{\"data\":\"/radio/text/");
   Serial.print(msg);
   Serial.println("\"}");
   digitalWrite(statusLedPin,LOW); //Reset status (if text was previously too long)
