@@ -1,9 +1,9 @@
 //radio2serial.ino
 // By Rémi Sarrailh
 // MIT licence
-// version: 0.6
+// version: 0.7
 
-// Get this program / update at: http://smarturl.it/radio2serial
+// Get this program / update at: https://github.com/pigetArduino/radio2serial
 //
 // Commands are sent with a REST syntax (ex: /radio/text/Hello World)
 // Data are received in JSON (ex: "{"data" : "/radio/text/Hello World"}")
@@ -23,8 +23,7 @@
 // (on text send)
 // Led blink : Text too long
 //
-// Arduino system will always be off if everything works correctly 
-
+// Arduino red led will always be off if everything works correctly 
 
 
 // Library
@@ -53,7 +52,7 @@
 */ 
 
 //Version
-const float VER = 0.60; 
+const float VER = 0.70; 
 
 //Led
 const int statusLedPin = 13;
@@ -83,8 +82,6 @@ void setup() {
   //Serial Setup
   Serial.begin(115200);
   Serial.setTimeout(100);
-  Serial.println("{\"ret\":\"Init\"}");
-  Serial.println("{\"ret\":\"Test Radio\"}");
   
   setupRadio(); // Setup Radio
   sendInfo(); //Display status for this program
@@ -143,7 +140,7 @@ void checkCommand() {
 //Display arduino code filename, url, version, wiring (tx,rx) and status (tx,rx)
 //Can be display again by typing /info
 void sendInfo() {
-  Serial.print("{\"file\":\"radio2serial.ino\",\"url\":\"smarturl.it/radio2serial\",\"ver\":\"");
+  Serial.print("{\"file\":\"radio2serial.ino\",\"url\":\"github.com/pigetArduino/radio2serial\",\"ver\":\"");
   Serial.print(VER);
   Serial.print("\",\"pins\":\"tx:");
   Serial.print(txPin);
@@ -357,7 +354,6 @@ void sendText434(String line) {
   Serial.print("{\"data\" : \"/radio/text/");
   Serial.print(msg);
   Serial.println("\"}");
-  Serial.println("{\"ret\":\"/radio/OK\"}");
   digitalWrite(statusLedPin,LOW); //Reset status (if text was previously too long)
 
   } else { //if text > 60 characters
@@ -383,7 +379,6 @@ void sendOld434(String line) {
   }
 
   RemoteTransmitter::sendCode(txPin, code, (period - RADIOHEAD_LATENCY_CORRECTION), 3);
-  Serial.println("{\"ret\":\"/radio/OK\"}");
   
   //Serial.println(code);
   //Serial.println(period);
@@ -433,7 +428,6 @@ void sendNew434(String line) {
     transmitter.sendUnit(id, true);
   }
 
-  Serial.println("{\"ret\":\"/radio/OK\"}");
   //Serial.println(address);
   //Serial.println(id);
   //Serial.println(level);
