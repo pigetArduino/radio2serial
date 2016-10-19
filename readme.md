@@ -34,7 +34,7 @@ Data are received in JSON (ex: "{"data" : "/radio/text/Hello World"}")
 ## Send radio
 send RadioHead code "Hello world"
 ```
-//radio/text/Hello World
+/radio/text/Hello World
 ```
 turn on new radio "address:1234 unit:1" 
 ```
@@ -50,7 +50,7 @@ dim new radio to 8/16 "address:1234 unit:2"
 ```
 
 ```
-// /radio/old/123456 : send old radio code "123456"
+/radio/old/123456 : send old radio code "123456"
 ```
 
 # Components
