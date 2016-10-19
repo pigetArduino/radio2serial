@@ -64,7 +64,7 @@ Cost: 10€
 
 
 # 3D models
-[Show Models](https://raw.githubusercontent.com/pigetArduino/radio2serial/master/3D/)
+[Show Models](https://github.com/pigetArduino/radio2serial/tree/master/3D)
 
 # Additional License
 
