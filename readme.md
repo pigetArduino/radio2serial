@@ -48,9 +48,9 @@ dim new radio to 8/16 "address:1234 unit:2"
 ```
 /radio/new/1234/2/8
 ```
-
+send old radio code "123456"
 ```
-/radio/old/123456 : send old radio code "123456"
+/radio/old/123456
 ```
 
 # Components
